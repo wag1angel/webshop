@@ -3,7 +3,7 @@
 En fungerande webshop byggd med React och Vite som hämtar produkter från DummyJSON API med en komplett kundvagn och kassaflöde.
 
 ## 🌐 Live Demo
-👉 https://github.com/wag1angel/webshop
+👉 https://webshop-delta-livid.vercel.app/
 
 ---
 
