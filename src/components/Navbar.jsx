@@ -1,16 +1,16 @@
-// Link används istället för <a> taggar för att inte ladda om sidan vid navigering
 import { Link } from 'react-router-dom'
+import { useCart } from '../CartContext'
 
-// Tar emot cart som prop från App.jsx för att räkna antal varor
-function Navbar({ cart }) {
-  // Räknar ihop totalt antal varor i kundvagnen (inte unika produkter, utan total kvantitet)
+function Navbar() {
+  // Hämtar cart direkt från Context — behöver inte props längre
+  const { cart } = useCart()
+
   const cartCount = cart.reduce(function(total, item) {
     return total + item.quantity
   }, 0)
 
   return (
     <nav className="navbar">
-      {/* Link to="/" navigerar till startsidan utan att ladda om sidan */}
       <Link to="/" className="navbar-logo">
         <svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M16 2L4 8v16l12 6 12-6V8L16 2z" fill="#5A9BD5"/>
@@ -19,11 +19,9 @@ function Navbar({ cart }) {
         </svg>
         YONIS-BUTIK
       </Link>
-      
       <div className="navbar-links">
         <Link to="/">Produkter</Link>
       </div>
-      
       <div className="navbar-right">
         <Link to="/cart" className="cart-icon">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -31,7 +29,6 @@ function Navbar({ cart }) {
             <circle cx="20" cy="21" r="1"/>
             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"/>
           </svg>
-          {/* Visar bara siffran om det finns varor i kundvagnen */}
           {cartCount > 0 && <span className="cart-count">{cartCount}</span>}
         </Link>
       </div>
